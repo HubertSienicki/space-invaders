@@ -1,0 +1,6 @@
+#folders
+/cmake-build-debug
+/assets
+
+#files
+CMakeLists.txt
