@@ -4,4 +4,24 @@
 
 #include "Controller.h"
 
-Controller::Controller(const View &view, const Model &model) : view(view), model(model) {}
+#include <utility>
+
+Controller::Controller(View view, const Model &model) : view(std::move(view)), model(model) {}
+
+void Controller::startGame() {
+
+    while(view.getMainWindow()->isOpen()){
+        view.getMainWindow()->clear();
+
+        sf::Event e{};
+
+        while(view.getMainWindow()->pollEvent(e)){
+            if(e.type == sf::Event::Closed){
+                view.getMainWindow()->close();
+            }
+        }
+        view.drawBackground();
+        view.getMainWindow()->display();
+    }
+}
+

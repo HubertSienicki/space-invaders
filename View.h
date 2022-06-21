@@ -14,18 +14,21 @@ private:
     sf::Sprite alien;
     sf::Sprite ship;
 
+
 public:
     View();
 
-    const sf::RenderWindow &getMainWindow() const;
+    sf::RenderWindow *getMainWindow() const;
 
-    const sf::Sprite &getBackGround() const;
+    sf::Sprite getBackGround() const;
 
-    const sf::Sprite &getAlien() const;
+    sf::Sprite getShip() const;
 
-    const sf::Sprite &getShip() const;
+    sf::Sprite getAlien();
 
     void initView();
+
+    void drawBackground();
 };
 
 

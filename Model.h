@@ -10,9 +10,17 @@ class Model {
 public:
     Model(int x, int y);
 
-private int x;
-    private int y;
+    int getX() const;
 
+    void setX(int x);
+
+    int getY() const;
+
+    void setY(int y);
+
+private:
+    int x;
+    int y;
 
 };
 

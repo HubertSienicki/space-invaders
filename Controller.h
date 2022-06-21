@@ -13,7 +13,9 @@ class Controller {
     Model model;
 
 public:
-    Controller(const View &view, const Model &model);
+    Controller(View view, const Model &model);
+
+    void startGame();
 };
 
 
