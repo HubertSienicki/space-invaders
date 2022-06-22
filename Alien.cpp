@@ -8,7 +8,6 @@ Alien::Alien(int gridPositionX, int gridPositionY, int actualX, int actualY) : g
                                                                                gridPositionY(gridPositionY),
                                                                                actualX(actualX), actualY(actualY) {
 
-
     alienTexture.loadFromFile(R"(C:\Users\kneiv\CLionProjects\space-invaders\assets\alien1.png)");
     alienSprite.setTexture(alienTexture);
 

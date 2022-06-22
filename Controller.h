@@ -5,16 +5,15 @@
 #ifndef SPACE_INVADERS_CONTROLLER_H
 #define SPACE_INVADERS_CONTROLLER_H
 
-#include "Model.h"
 #include "View.h"
+#include "SpaceShip.h"
 
 class Controller {
     View view;
-    Model model;
     SpaceShip spaceShip;
 
 public:
-    Controller(View view, const Model &model);
+    Controller(const View &view, const SpaceShip &spaceShip);
 
     void startGame();
 

@@ -1,15 +1,14 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Model.h"
 #include "View.h"
 #include "Controller.h"
 
 int main() {
 
-    Model model(2,3);
+    SpaceShip spaceShip;
     View view;
 
-    Controller controller(view, model);
+    Controller controller(view, spaceShip);
 
     controller.startGame();
 

@@ -48,7 +48,7 @@ void View::drawAlienGrid() {
     for (int i = 1; i <= 5; ++i) {
         for (int j = 1; j <= 8; ++j) {
             Alien alientemp(j - 1, i - 1, j, i);
-            //23 * i * 3
+
             mainWindow->draw(alientemp.getAlienSprite());
         }
     }

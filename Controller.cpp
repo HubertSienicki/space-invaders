@@ -5,28 +5,31 @@
 #include "Controller.h"
 
 #include <utility>
+#include <iostream>
 
-//GLOBAL SPACESHIP
-SpaceShip spaceShip();
 
-Controller::Controller(View view, const Model &model) : view(std::move(view)), model(model) {}
+Controller::Controller(const View &view, const SpaceShip &spaceShip) : view(view), spaceShip(spaceShip) {}
 
 void Controller::startGame() {
 
-    while(view.getMainWindow()->isOpen()){
+    while (view.getMainWindow()->isOpen()) {
         view.getMainWindow()->clear();
 
         sf::Event e{};
 
-        while(view.getMainWindow()->pollEvent(e)){
-            if(e.type == sf::Event::Closed){
+        while (view.getMainWindow()->pollEvent(e)) {
+            if (e.type == sf::Event::Closed) {
                 view.getMainWindow()->close();
             }
         }
+        spaceShip.updateMovement();
+        spaceShip.decelerate();
         view.drawBackground();
         view.drawSpaceShip(spaceShip);
         view.drawAlienGrid();
         view.getMainWindow()->display();
     }
 }
+
+
 
