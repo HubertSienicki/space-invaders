@@ -51,5 +51,18 @@ void View::drawBackground() {
     mainWindow->draw(backGround);
 }
 
+void View::drawAlienGrid() {
+
+}
+
+void View::drawSpaceShip(SpaceShip spaceShip) {
+    mainWindow->draw(spaceShip.getTempShape());
+}
+
+void View::drawBullet() {
+
+}
+
+
 #pragma clang diagnostic pop
 #pragma clang diagnostic pop

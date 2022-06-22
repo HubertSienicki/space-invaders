@@ -6,6 +6,9 @@
 
 #include <utility>
 
+//GLOBAL SPACESHIP
+SpaceShip spaceShip();
+
 Controller::Controller(View view, const Model &model) : view(std::move(view)), model(model) {}
 
 void Controller::startGame() {
@@ -21,6 +24,7 @@ void Controller::startGame() {
             }
         }
         view.drawBackground();
+        view.drawSpaceShip(spaceShip);
         view.getMainWindow()->display();
     }
 }

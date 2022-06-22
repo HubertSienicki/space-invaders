@@ -6,6 +6,7 @@
 #define SPACE_INVADERS_VIEW_H
 
 #include <SFML/Graphics.hpp>
+#include "SpaceShip.h"
 
 class View {
 private:
@@ -29,6 +30,10 @@ public:
     void initView();
 
     void drawBackground();
+
+    void drawSpaceShip(SpaceShip spaceShip);
+    void drawAlienGrid();
+    void drawBullet();
 };
 
 

@@ -11,11 +11,13 @@
 class Controller {
     View view;
     Model model;
+    SpaceShip spaceShip;
 
 public:
     Controller(View view, const Model &model);
 
     void startGame();
+
 };
 
 
