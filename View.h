@@ -7,13 +7,12 @@
 
 #include <SFML/Graphics.hpp>
 #include "SpaceShip.h"
+#include "Alien.h"
 
 class View {
 private:
     sf::RenderWindow *mainWindow{};
     sf::Sprite backGround;
-    sf::Sprite alien;
-    sf::Sprite ship;
 
 
 public:
@@ -23,17 +22,15 @@ public:
 
     sf::Sprite getBackGround() const;
 
-    sf::Sprite getShip() const;
-
-    sf::Sprite getAlien();
-
     void initView();
 
     void drawBackground();
 
     void drawSpaceShip(SpaceShip spaceShip);
-    void drawAlienGrid();
+
     void drawBullet();
+
+    void drawAlienGrid();
 };
 
 

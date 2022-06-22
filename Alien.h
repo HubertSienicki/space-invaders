@@ -7,23 +7,25 @@
 
 
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 class Alien {
 private:
-    int gridX;
-    int gridY;
-    sf::Sprite AlienSprite;
+    int gridPositionX;
+    int gridPositionY;
+
+    int actualX;
+    int actualY;
+
+    sf::Texture alienTexture;
+    sf::Sprite alienSprite;
 
 public:
-    Alien(int gridX, int gridY);
+    Alien(int gridPositionX, int gridPositionY, int actualX, int actualY);
 
-    int getGridX() const;
+    const sf::Texture &getAlienTexture() const;
 
-    void setGridX(int gridX);
-
-    int getGridY() const;
-
-    void setGridY(int gridY);
+    void setAlienTexture(const sf::Texture &alienTexture);
 
     const sf::Sprite &getAlienSprite() const;
 

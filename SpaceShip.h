@@ -7,12 +7,14 @@
 
 
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 class SpaceShip {
 private:
     int positionX;
     int positionY;
     sf::RectangleShape tempShape;
+    sf::Texture spaceShipTexture;
     sf::Sprite spaceShipSprite;
 
 public:
@@ -29,6 +31,10 @@ public:
     const sf::RectangleShape &getTempShape() const;
 
     void setTempShape(const sf::RectangleShape &tempShape);
+
+    const sf::Sprite &getSpaceShipSprite() const;
+
+    void setSpaceShipSprite(const sf::Sprite &spaceShipSprite);
 };
 
 

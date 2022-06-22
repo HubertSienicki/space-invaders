@@ -6,10 +6,14 @@
 #include "SpaceShip.h"
 
 SpaceShip::SpaceShip() {
-    tempShape.setSize({50, 10});
-    this->positionX = 400-tempShape.getSize().x; // Default
-    this->positionY = 750; // Default
-    tempShape.setPosition(positionX, positionY);
+    spaceShipTexture.loadFromFile(R"(C:\Users\kneiv\CLionProjects\space-invaders\assets\spaceship.png)"); //
+    spaceShipSprite.setTexture(spaceShipTexture);
+    spaceShipSprite.scale({5, 5});
+
+    this->positionX = 400 - spaceShipTexture.getSize().x; // Default
+    this->positionY = 750 - spaceShipTexture.getSize().y; // Default
+
+    spaceShipSprite.setPosition(this->positionX, this->positionY);
 }
 
 int SpaceShip::getPositionX() const {
@@ -34,4 +38,12 @@ const sf::RectangleShape &SpaceShip::getTempShape() const {
 
 void SpaceShip::setTempShape(const sf::RectangleShape &tempShape) {
     SpaceShip::tempShape = tempShape;
+}
+
+const sf::Sprite &SpaceShip::getSpaceShipSprite() const {
+    return spaceShipSprite;
+}
+
+void SpaceShip::setSpaceShipSprite(const sf::Sprite &spaceShipSprite) {
+    SpaceShip::spaceShipSprite = spaceShipSprite;
 }

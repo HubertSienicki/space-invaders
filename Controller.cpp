@@ -25,6 +25,7 @@ void Controller::startGame() {
         }
         view.drawBackground();
         view.drawSpaceShip(spaceShip);
+        view.drawAlienGrid();
         view.getMainWindow()->display();
     }
 }

@@ -4,6 +4,7 @@
 // Created by kneiv on 6/21/2022.
 //
 #include "View.h"
+#include "Alien.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NullDereference"
@@ -27,14 +28,6 @@ sf::Sprite View::getBackGround() const {
     return backGround;
 }
 
-sf::Sprite View::getAlien() {
-    return alien;
-}
-
-sf::Sprite View::getShip() const {
-    return ship;
-}
-
 void View::drawBackground() {
     sf::Texture backgroundTexture{};
     backgroundTexture.loadFromFile(
@@ -52,11 +45,17 @@ void View::drawBackground() {
 }
 
 void View::drawAlienGrid() {
-
+    for (int i = 1; i <= 5; ++i) {
+        for (int j = 1; j <= 8; ++j) {
+            Alien alientemp(j - 1, i - 1, j, i);
+            //23 * i * 3
+            mainWindow->draw(alientemp.getAlienSprite());
+        }
+    }
 }
 
 void View::drawSpaceShip(SpaceShip spaceShip) {
-    mainWindow->draw(spaceShip.getTempShape());
+    mainWindow->draw(spaceShip.getSpaceShipSprite());
 }
 
 void View::drawBullet() {
