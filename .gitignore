@@ -1,6 +1,7 @@
 #folders
 /cmake-build-debug
 /assets
+/.idea
 
 #files
 CMakeLists.txt
