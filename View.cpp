@@ -15,9 +15,9 @@ View::View() {
 
 void View::initView() {
     mainWindow = new sf::RenderWindow(sf::VideoMode(800, 800), "Space Invaders");
+    mainWindow->setVerticalSyncEnabled(true);
 
     backGround.scale({15, 15});
-
 }
 
 sf::RenderWindow *View::getMainWindow() const {
@@ -44,18 +44,15 @@ void View::drawBackground() {
     mainWindow->draw(backGround);
 }
 
-void View::drawAlienGrid() {
-    for (int i = 1; i <= 5; ++i) {
-        for (int j = 1; j <= 8; ++j) {
-            Alien alientemp(j - 1, i - 1, j, i);
 
-            mainWindow->draw(alientemp.getAlienSprite());
-        }
-    }
+void View::drawSpaceShip(const SpaceShip &spaceShip) {
+    mainWindow->draw(spaceShip.getSpaceShipSprite());
 }
 
-void View::drawSpaceShip(SpaceShip spaceShip) {
-    mainWindow->draw(spaceShip.getSpaceShipSprite());
+void View::drawAlienGrid(const std::vector<Alien> &aliens) {
+    for (const auto &alien: aliens) {
+        mainWindow->draw(alien.getAlienSprite());
+    }
 }
 
 void View::drawBullet() {

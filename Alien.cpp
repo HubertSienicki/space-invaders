@@ -2,34 +2,37 @@
 // Created by kneiv on 6/22/2022.
 //
 
+#include <iostream>
 #include "Alien.h"
 
-Alien::Alien(int gridPositionX, int gridPositionY, int actualX, int actualY) : gridPositionX(gridPositionX),
-                                                                               gridPositionY(gridPositionY),
-                                                                               actualX(actualX), actualY(actualY) {
 
-    alienTexture.loadFromFile(R"(C:\Users\kneiv\CLionProjects\space-invaders\assets\alien1.png)");
-    alienSprite.setTexture(alienTexture);
+Alien::Alien(int actualX, int actualY) : actualX(actualX), actualY(actualY) {
+    alienTexture = new sf::Texture;
+    alienTexture->loadFromFile(R"(C:\Users\kneiv\CLionProjects\space-invaders\assets\alien1.png)");
 
-    actualX = (23*actualX*3) + (6*alienTexture.getSize().x);
-    actualY = actualY * 50 + alienTexture.getSize().y;
+    alienSprite.setTexture(*alienTexture);
+    velocity = 1.f;
+    maxVelocity = 1.f;
 
+    actualX = actualX * ((alienTexture->getSize().x * alienTexture->getSize().y) - alienTexture->getSize().x);
+    actualY = actualY * (alienTexture->getSize().x + 7.5 * alienTexture->getSize().y);
     alienSprite.setPosition({static_cast<float>(actualX), static_cast<float>(actualY)});
     alienSprite.scale({5, 5});
 }
 
-const sf::Sprite &Alien::getAlienSprite() const {
-    return this->alienSprite;
+void Alien::move(const float dir_x) {
+    this->velocity += dir_x;
+
+    if (std::abs(this->velocity) > this->maxVelocity) {
+        this->velocity = this->maxVelocity * ((this->velocity < 0.f) ? -1.f : 1.f);
+    }
+    this->alienSprite.move({this->velocity, 0});
 }
 
-void Alien::setAlienSprite(const sf::Sprite &alienSprite) {
-    this->alienSprite = alienSprite;
+void Alien::updateMovement(float dir_x) {
+    this->move(dir_x);
 }
 
-const sf::Texture &Alien::getAlienTexture() const {
-    return alienTexture;
-}
-
-void Alien::setAlienTexture(const sf::Texture &alienTexture) {
-    Alien::alienTexture = alienTexture;
+const sf::Sprite &Alien::getAlienSprite() const{
+    return alienSprite;
 }

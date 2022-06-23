@@ -26,11 +26,12 @@ public:
 
     void drawBackground();
 
-    void drawSpaceShip(SpaceShip spaceShip);
+    void drawSpaceShip(const SpaceShip& spaceShip);
 
     void drawBullet();
 
-    void drawAlienGrid();
+    void drawAlienGrid(const std::vector<Alien>& aliens);
+
 };
 
 

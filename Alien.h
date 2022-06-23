@@ -11,25 +11,23 @@
 
 class Alien {
 private:
-    int gridPositionX;
-    int gridPositionY;
-
+    float velocity;
+    float maxVelocity;
     int actualX;
     int actualY;
 
-    sf::Texture alienTexture;
+    sf::Texture *alienTexture;
     sf::Sprite alienSprite;
 
+
 public:
-    Alien(int gridPositionX, int gridPositionY, int actualX, int actualY);
 
-    const sf::Texture &getAlienTexture() const;
+    Alien(int actualX, int actualY);
 
-    void setAlienTexture(const sf::Texture &alienTexture);
+    const sf::Sprite & getAlienSprite() const;
 
-    const sf::Sprite &getAlienSprite() const;
-
-    void setAlienSprite(const sf::Sprite &alienSprite);
+    void move(float dir_x);
+    void updateMovement(float dir_x);
 };
 
 

@@ -9,13 +9,19 @@
 #include "SpaceShip.h"
 
 class Controller {
+private:
     View view;
     SpaceShip spaceShip;
+    std::vector<Alien>alienGrid;
+    float moveDir = 1.f;
 
 public:
-    Controller(const View &view, const SpaceShip &spaceShip);
+    Controller(View view, SpaceShip spaceShip);
 
     void startGame();
+    void initAliens();
+    void changeDirAlienGrid();
+    void moveGrid();
 
 };
 

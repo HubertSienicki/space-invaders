@@ -35,7 +35,6 @@ void SpaceShip::move(const float dir_x) {
 
 void SpaceShip::decelerate() {
     if (this->spaceShipSprite.getPosition().x > 0 && this->spaceShipSprite.getPosition().x < 755) {
-        std::cout << velocity;
         this->velocity *= this->drag;
         if (std::abs(velocity) < this->minVelocity) {
             this->velocity = 0.f;
