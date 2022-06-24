@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "SpaceShip.h"
 #include "Alien.h"
+#include "LaserBeam.h"
 
 class View {
 private:
@@ -32,6 +33,7 @@ public:
 
     void drawAlienGrid(const std::vector<Alien>& aliens);
 
+    void drawBullet(const std::vector<LaserBeam>& lb);
 };
 
 

@@ -5,6 +5,7 @@
 //
 #include "View.h"
 #include "Alien.h"
+#include "LaserBeam.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NullDereference"
@@ -55,8 +56,10 @@ void View::drawAlienGrid(const std::vector<Alien> &aliens) {
     }
 }
 
-void View::drawBullet() {
-
+void View::drawBullet(const std::vector<LaserBeam>& lb) {
+    for(const LaserBeam& bullet:lb){
+        mainWindow->draw(bullet.getLaserBeamSprite());
+    }
 }
 
 

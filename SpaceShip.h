@@ -6,6 +6,7 @@
 #define SPACE_INVADERS_SPACESHIP_H
 
 #include <SFML/Graphics.hpp>
+#include "LaserBeam.h"
 
 class SpaceShip {
 private:
@@ -17,36 +18,27 @@ private:
     float drag;
     float acceleration;
 
+    int reload_duration = 40;
+
+    std::vector<LaserBeam> bullets;
+
     sf::Texture spaceShipTexture;
     sf::Sprite spaceShipSprite;
 
 public:
     SpaceShip();
 
-    int getPositionX() const;
-
-    void setPositionX(int positionX);
-
-    int getPositionY() const;
-
-    void setPositionY(int positionY);
-
     const sf::Sprite &getSpaceShipSprite() const;
-
-    void setSpaceShipSprite(const sf::Sprite &spaceShipSprite);
-
-    void update();
-
-    void setMovingLeft();
-
-    void setMovingRight();
-
-    void accelerate(bool acceleration);
 
     void move(float dir_x);
 
     void decelerate();
-    void updateMovement();
+
+    void update();
+
+    const std::vector<LaserBeam> &getBullets() const;
+
+    void shoot();
 };
 
 

@@ -22,7 +22,6 @@ public:
     void initAliens();
     void changeDirAlienGrid();
     void moveGrid();
-
 };
 
 

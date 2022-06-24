@@ -47,49 +47,59 @@ void SpaceShip::decelerate() {
     }
 }
 
-void SpaceShip::updateMovement() {
+void SpaceShip::update() {
     if (this->spaceShipSprite.getPosition().x > 0 && this->spaceShipSprite.getPosition().x < 755) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
             this->move(-1.f);
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
             this->move(1.f);
         }
-    }else{
-        if(this->spaceShipSprite.getPosition().x <= 0){
+    } else {
+        if (this->spaceShipSprite.getPosition().x <= 0) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
                 this->move(1.f);
             }
-        }else if( this->spaceShipSprite.getPosition().x >= 750){
+        } else if (this->spaceShipSprite.getPosition().x >= 750) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
                 this->move(-1.f);
             }
         }
     }
+
+    for (LaserBeam &movable: bullets) {
+        movable.move(-1.0f);
+        if (movable.getLaserBeamSprite().getPosition().y <= -10) {
+            movable.is_dead = true;
+        }
+    }
+
+    bullets.erase(remove_if(bullets.begin(), bullets.end(), [](const LaserBeam &bullet) -> bool { //sets max bullets available to 9
+        return bullet.is_dead;
+    }), bullets.end());
 }
 
-int SpaceShip::getPositionX() const {
-    return positionX;
-}
-
-void SpaceShip::setPositionX(int positionX) {
-    SpaceShip::positionX = positionX;
-}
-
-int SpaceShip::getPositionY() const {
-    return positionY;
-}
-
-void SpaceShip::setPositionY(int positionY) {
-    SpaceShip::positionY = positionY;
+void SpaceShip::shoot() {
+    if (reload_duration == 0) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+            auto *lb = new LaserBeam();
+            lb->setPosition(this->spaceShipSprite.getPosition().x, this->spaceShipSprite.getPosition().y);
+            this->bullets.push_back(*lb);
+            reload_duration = 40;
+        }
+    } else {
+        reload_duration--;
+    }
 }
 
 const sf::Sprite &SpaceShip::getSpaceShipSprite() const {
     return spaceShipSprite;
 }
 
-void SpaceShip::setSpaceShipSprite(const sf::Sprite &spaceShipSprite) {
-    SpaceShip::spaceShipSprite = spaceShipSprite;
+
+const std::vector<LaserBeam> &SpaceShip::getBullets() const {
+    return bullets;
 }
+
 
 
 

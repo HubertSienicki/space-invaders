@@ -3,15 +3,17 @@
 //
 
 #include "Controller.h"
-
 #include <utility>
 
 
-Controller::Controller(View view, SpaceShip spaceShip) : view(std::move(view)), spaceShip(std::move(spaceShip)) {}
+
+Controller::Controller(View view, SpaceShip spaceShip)
+        : view(std::move(view)), spaceShip(std::move(spaceShip)) {}
 
 void Controller::startGame() {
     this->initAliens();
     this->alienGrid.reserve(40);
+
 
     while (view.getMainWindow()->isOpen()) {
         view.getMainWindow()->clear();
@@ -23,14 +25,19 @@ void Controller::startGame() {
                 view.getMainWindow()->close();
             }
         }
-        //Updates movement of aliens and spaceship
-        spaceShip.updateMovement();
+
+        //Updates of spaceship
+        spaceShip.shoot();
+
         spaceShip.decelerate();
+
         this->changeDirAlienGrid();
 
         view.drawBackground();
+        view.drawBullet(spaceShip.getBullets());
         view.drawSpaceShip(spaceShip);
         view.drawAlienGrid(alienGrid);
+        spaceShip.update();
         view.getMainWindow()->display();
     }
 }
