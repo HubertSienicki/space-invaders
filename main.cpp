@@ -1,7 +1,5 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include "View.h"
-#include "Controller.h"
+#include "src/headers/View.h"
+#include "src/headers/Controller.h"
 
 int main() {
 

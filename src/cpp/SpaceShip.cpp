@@ -3,10 +3,10 @@
 //
 
 #include <iostream>
-#include "SpaceShip.h"
+#include "../headers/SpaceShip.h"
 
 SpaceShip::SpaceShip() {
-    spaceShipTexture.loadFromFile(R"(C:\Users\kneiv\CLionProjects\space-invaders\assets\spaceship.png)"); //
+    spaceShipTexture.loadFromFile(R"(..\assets\spaceship.png)"); //
     spaceShipSprite.setTexture(spaceShipTexture);
     spaceShipSprite.scale({5, 5});
 
@@ -83,7 +83,7 @@ void SpaceShip::shoot() {
             auto *lb = new LaserBeam();
             lb->setPosition(this->spaceShipSprite.getPosition().x, this->spaceShipSprite.getPosition().y);
             this->bullets.push_back(*lb);
-            reload_duration = 40;
+            reload_duration = 45;
         }
     } else {
         reload_duration--;

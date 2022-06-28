@@ -3,9 +3,7 @@
 //
 // Created by kneiv on 6/21/2022.
 //
-#include "View.h"
-#include "Alien.h"
-#include "LaserBeam.h"
+#include "../headers/View.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NullDereference"
@@ -32,7 +30,7 @@ sf::Sprite View::getBackGround() const {
 void View::drawBackground() {
     sf::Texture backgroundTexture{};
     backgroundTexture.loadFromFile(
-            R"(C:\Users\kneiv\CLionProjects\space-invaders\assets\SpaceInvaders_Background.png)",
+            R"(..\assets\SpaceInvaders_Background.png)",
             sf::IntRect(
                     0,
                     0,

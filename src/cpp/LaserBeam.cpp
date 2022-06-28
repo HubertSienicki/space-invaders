@@ -2,7 +2,7 @@
 // Created by kneiv on 6/23/2022.
 //
 
-#include "LaserBeam.h"
+#include "../headers/LaserBeam.h"
 
 LaserBeam::LaserBeam(){
     this->maxVelocity = 2.f;
@@ -10,12 +10,8 @@ LaserBeam::LaserBeam(){
     this->is_dead = false;
 
     this->laserBeamTexture = new sf::Texture;
-    this->laserBeamTexture->loadFromFile(R"(C:\Users\kneiv\CLionProjects\space-invaders\assets\shot.png)");
+    this->laserBeamTexture->loadFromFile(R"(..\assets\shot.png)");
     this->laserBeamSprite.setTexture(*laserBeamTexture);
-}
-
-void LaserBeam::init(int posX, int posY) {
-    this->laserBeamSprite.move({5, 5});
 }
 
 void LaserBeam::move(int dir_y) {
@@ -31,18 +27,6 @@ void LaserBeam::move(int dir_y) {
 
 const sf::Sprite &LaserBeam::getLaserBeamSprite() const {
     return laserBeamSprite;
-}
-
-void LaserBeam::setLaserBeamSprite(const sf::Sprite &laserBeamSprite) {
-    LaserBeam::laserBeamSprite = laserBeamSprite;
-}
-
-float LaserBeam::getVelocity() const {
-    return velocity;
-}
-
-void LaserBeam::setVelocity(float velocity) {
-    LaserBeam::velocity = velocity;
 }
 
 void LaserBeam::setPosition(const float x, const float y) {

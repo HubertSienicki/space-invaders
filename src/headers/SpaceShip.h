@@ -18,7 +18,7 @@ private:
     float drag;
     float acceleration;
 
-    int reload_duration = 40;
+    int reload_duration = 45 ;
 
     std::vector<LaserBeam> bullets;
 

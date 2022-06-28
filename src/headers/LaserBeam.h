@@ -22,18 +22,12 @@ public:
 
     sf::Sprite laserBeamSprite;
 
-    void init(int posX, int posY);
     bool is_dead;
 
     void move(int dir_y);
 
-    float getVelocity() const;
-
-    void setVelocity(float velocity);
-
     const sf::Sprite &getLaserBeamSprite() const;
 
-    void setLaserBeamSprite(const sf::Sprite &laserBeamSprite);
     void setPosition(float x, float y);
 
     void die();
