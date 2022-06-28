@@ -28,7 +28,6 @@ void SpaceShip::move(const float dir_x) {
     if (std::abs(velocity) > maxVelocity) {
         this->velocity = this->maxVelocity * ((this->velocity < 0.f) ? -1.f : 1.f);
     }
-
     this->spaceShipSprite.move({this->velocity, 0});
 }
 
@@ -96,8 +95,8 @@ const sf::Sprite &SpaceShip::getSpaceShipSprite() const {
 }
 
 
-const std::vector<LaserBeam> &SpaceShip::getBullets() const {
-    return bullets;
+std::vector<LaserBeam> &SpaceShip::getBullets() const {
+    return (std::vector<LaserBeam> &)bullets;
 }
 
 

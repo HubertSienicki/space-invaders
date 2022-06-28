@@ -52,13 +52,16 @@ void View::drawSpaceShip(const SpaceShip &spaceShip) {
 
 void View::drawAlienGrid(const std::vector<Alien> &aliens) {
     for (const auto &alien: aliens) {
-        mainWindow->draw(alien.getAlienSprite());
+        if(!alien.getDead())
+            mainWindow->draw(alien.getAlienSprite());
     }
 }
 
 void View::drawBullet(const std::vector<LaserBeam>& lb) {
     for(const LaserBeam& bullet:lb){
-        mainWindow->draw(bullet.getLaserBeamSprite());
+        if(!bullet.is_dead){
+            mainWindow->draw(bullet.getLaserBeamSprite());
+        }
     }
 }
 

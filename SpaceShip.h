@@ -36,9 +36,13 @@ public:
 
     void update();
 
-    const std::vector<LaserBeam> &getBullets() const;
+    void refreshAmmo();
 
     void shoot();
+
+    std::vector<LaserBeam> &getBullets() const;
+
+
 };
 
 

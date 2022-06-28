@@ -36,6 +36,7 @@ public:
     void setLaserBeamSprite(const sf::Sprite &laserBeamSprite);
     void setPosition(float x, float y);
 
+    void die();
 };
 
 

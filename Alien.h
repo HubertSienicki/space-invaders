@@ -8,6 +8,16 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include "LaserBeam.h"
+
+struct hitBox {
+public:
+    float HitboxXStart;
+    float HitboxXEnd;
+    float HitboxYStart;
+    float HitboxYEnd;
+
+};
 
 class Alien {
 private:
@@ -15,6 +25,11 @@ private:
     float maxVelocity;
     int actualX;
     int actualY;
+    bool isDead;
+
+    hitBox hb;
+
+    void setHitboxes();
 
     sf::Texture *alienTexture;
     sf::Sprite alienSprite;
@@ -22,12 +37,19 @@ private:
 
 public:
 
-    Alien(int actualX, int actualY);
+    Alien(int actualX, int actualY, bool isDead);
 
-    const sf::Sprite & getAlienSprite() const;
+    const sf::Sprite &getAlienSprite() const;
 
     void move(float dir_x);
+
     void updateMovement(float dir_x);
+
+    bool getDead() const;
+
+    const hitBox &getHb() const;
+
+    void die();
 };
 
 

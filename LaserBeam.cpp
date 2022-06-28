@@ -24,9 +24,9 @@ void LaserBeam::move(int dir_y) {
     if (std::abs(this->velocity) > this->maxVelocity) {
         this->velocity = this->maxVelocity * ((this->velocity < 0.f) ? -1.f : 1.f);
     }
-
     this->laserBeamSprite.move({0,  this->velocity});
 }
+
 
 
 const sf::Sprite &LaserBeam::getLaserBeamSprite() const {
@@ -48,4 +48,8 @@ void LaserBeam::setVelocity(float velocity) {
 void LaserBeam::setPosition(const float x, const float y) {
     this->laserBeamSprite.setPosition(x + 21 ,y - 22);
     this->laserBeamSprite.scale({3,3});
+}
+
+void LaserBeam::die() {
+    this->is_dead = true;
 }

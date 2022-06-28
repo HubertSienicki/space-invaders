@@ -4,8 +4,7 @@
 
 #include "Controller.h"
 #include <utility>
-
-
+#include <iostream>
 
 Controller::Controller(View view, SpaceShip spaceShip)
         : view(std::move(view)), spaceShip(std::move(spaceShip)) {}
@@ -28,54 +27,63 @@ void Controller::startGame() {
 
         //Updates of spaceship
         spaceShip.shoot();
-
+        spaceShip.update();
         spaceShip.decelerate();
 
         this->changeDirAlienGrid();
+        checkHit();
 
         view.drawBackground();
         view.drawBullet(spaceShip.getBullets());
         view.drawSpaceShip(spaceShip);
         view.drawAlienGrid(alienGrid);
-        spaceShip.update();
+
         view.getMainWindow()->display();
     }
 }
 
-/**
- * 87654321
- * 1211109
- * 212019181716151413
- * 302928272625242322
- * 393837363534333231
- */
 void Controller::initAliens() {
     for (int i = 1; i <= 8; ++i) {
         for (int j = 1; j <= 5; ++j) {
-            Alien x(i, j);
+            Alien x(i, j, 0);
             this->alienGrid.push_back(x);
         }
     }
-//    Alien alientemp(1,1,1,1);
-//    this->alienGrid.push_back(alientemp);
 }
 
 void Controller::changeDirAlienGrid() {
-    if (this->alienGrid.at(0).getAlienSprite().getPosition().x < 0) {
-        moveDir = 1.f;
-        moveGrid();
-    } else if (this->alienGrid.at(39).getAlienSprite().getPosition().x >= 750) {
-        moveDir = -1.f;
-        moveGrid();
-    }else {
-        moveGrid();
+    for (const Alien& alien:alienGrid) {
+        if(alien.getAlienSprite().getPosition().x < 0){
+            moveDir = 1.f;
+        }else if(alien.getAlienSprite().getPosition().x >= 750){
+            moveDir = -1.f;
+        }
     }
+    moveGrid();
 }
 
 void Controller::moveGrid() {
     for (auto &i: this->alienGrid) {
         i.updateMovement(moveDir);
     }
+}
+
+void Controller::checkHit() {
+    for (Alien& alien:alienGrid) {
+        for (LaserBeam& bullet:spaceShip.getBullets()) {
+            if((alien.getHb().HitboxXStart <= bullet.getLaserBeamSprite().getPosition().x
+                && alien.getHb().HitboxXEnd >= bullet.getLaserBeamSprite().getPosition().x)
+                && (alien.getHb().HitboxYStart <= bullet.getLaserBeamSprite().getPosition().y
+                && alien.getHb().HitboxYEnd >= bullet.getLaserBeamSprite().getPosition().y)){
+                alien.die();
+                bullet.die();
+            }
+        }
+    }
+
+    alienGrid.erase(std::remove_if(alienGrid.begin(), alienGrid.end(), [](const Alien& alien)->bool {
+        return alien.getDead();
+    }), alienGrid.end());
 }
 
 
